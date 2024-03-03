@@ -1,0 +1,22 @@
+version: "0.0.1"
+services:
+  miapp:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mariadb
+  mariadb:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: my-password
+      MYSQL_DATABASE: my-database
+      MYSQL_USER: my-user
+      MYSQL_PASSWORD: my-user-password
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+volumes:
+  mariadb-data:
